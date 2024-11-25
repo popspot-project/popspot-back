@@ -36,16 +36,16 @@ public class PostController {
     return "Post and Image created successfully";
   }
 
-  @PutMapping("/{postingNum}")
+  @PutMapping("/update/{postingId}")
   public String updatePost(@PathVariable Long postingId, @RequestBody Post post) {
     post.setPostId(postingId);
     postService.updatePost(post);
     return "Post updated successfully";
   }
 
-  @DeleteMapping("/{postingNum}")
-  public String deletePost(@PathVariable Long postingNum) {
-    postService.deletePost(postingNum);
+  @DeleteMapping("/{postingId}")
+  public String deletePost(@PathVariable Long postingId) {
+    postService.deletePost(postingId);
     return "Post deleted successfully";
   }
 
@@ -54,8 +54,8 @@ public class PostController {
     return postService.findAll();
   }
 
-  @GetMapping("/list/{postingNum}")
-  public Post getPostById(@PathVariable Long postingNum) {
-    return postService.findById(postingNum);
+  @GetMapping("/list/{postingId}")
+  public Post getPostById(@PathVariable Long postingId) {
+    return postService.findById(postingId);
   }
 }

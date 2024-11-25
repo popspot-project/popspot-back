@@ -20,7 +20,6 @@
     )
   </insert>
 
-
   <!-- Update an existing post -->
   <update id="updatePost">
     UPDATE Post
