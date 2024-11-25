@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kems.popspot.board.repository.PostRepository">
+
+  <!-- Insert a new post -->
+  <insert id="createPost" useGeneratedKeys="true" keyProperty="postId" keyColumn="postId">
+    INSERT INTO Post (postId, title, address, description, public_url, start_date, end_date, start_time, end_time)
+    VALUES (
+    post_seq.NEXTVAL,
+    #{title, jdbcType=VARCHAR},
+    #{address, jdbcType=VARCHAR},
+    #{description, jdbcType=VARCHAR},
+    #{publicUrl, jdbcType=VARCHAR},
+    #{startDate, jdbcType=TIMESTAMP},
+    #{endDate, jdbcType=TIMESTAMP},
+    #{startTime, jdbcType=TIMESTAMP},
+    #{endTime, jdbcType=TIMESTAMP}
+    )
+  </insert>
+
+
+  <!-- Update an existing post -->
+  <update id="updatePost">
+    UPDATE Post
+    SET title = #{title},
+    address = #{address},
+    description = #{description},
+    public_url = #{publicUrl},
+    start_date = #{startDate},
+    end_date = #{endDate},
+    start_time = #{startTime},
+    end_time = #{endTime},
+    imgno = #{imgNo}
+    WHERE postid = #{postId}
+  </update>
+
+  <!-- Delete a post -->
+  <delete id="deletePost">
+    DELETE FROM Post WHERE postid = #{postId}
+  </delete>
+
+  <!-- Select all posts -->
+  <select id="findAll" resultType="kems.popspot.board.domain.Post">
+    SELECT postid AS postId,
+    title,
+    address,
+    description,
+    public_url AS publicUrl,
+    start_date AS startDate,
+    end_date AS endDate,
+    start_time AS startTime,
+    end_time AS endTime,
+    imgno AS imgNo
+    FROM Post
+  </select>
+
+  <!-- Select a post by ID -->
+  <select id="findById" resultType="kems.popspot.board.domain.Post">
+    SELECT postid AS postId,
+    title,
+    address,
+    description,
+    public_url AS publicUrl,
+    start_date AS startDate,
+    end_date AS endDate,
+    start_time AS startTime,
+    end_time AS endTime,
+    imgno AS imgNo
+    FROM Post
+    WHERE postid = #{postId}
+  </select>
+
+</mapper>

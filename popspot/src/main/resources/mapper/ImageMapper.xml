@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kems.popspot.board.repository.ImageRepository">
+
+
+  <select id="getNextImgNo" resultType="long">
+    SELECT img_seq.NEXTVAL FROM DUAL
+  </select>
+
+  <!-- Insert an image -->
+  <insert id="addImage" keyProperty="imgNo">
+    INSERT INTO Img (imgNo, img, img_copy, img_size, fileinfo, imgpath)
+    VALUES (
+    img_seq.NEXTVAL,
+    #{img, jdbcType=VARCHAR},
+    #{imgCopy, jdbcType=VARCHAR},
+    #{imgSize, jdbcType=VARCHAR},
+    #{fileInfo, jdbcType=VARCHAR},
+    #{imgPath, jdbcType=VARCHAR}
+    )
+  </insert>
+
+
+  <!-- Select images by post ID -->
+  <select id="findImagesByPostId" resultType="kems.popspot.board.domain.Image">
+
+    SELECT imgno AS imgNo,
+    postingnum AS postingNum,
+    img,
+    img_copy AS imgCopy,
+    img_size AS imgSize,
+    fileinfo AS fileInfo,
+    imgpath AS imgPath
+    FROM Img
+    WHERE postingnum = #{postingNum}
+  </select>
+
+  <!-- Delete images by post ID -->
+  <delete id="deleteImagesByPostId">
+    DELETE FROM Img WHERE postingnum = #{postingNum}
+  </delete>
+</mapper>
