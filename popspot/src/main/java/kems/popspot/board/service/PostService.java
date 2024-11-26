@@ -22,13 +22,11 @@ public class PostService {
 
   @Transactional
   public void createPostWithImage(Post post, Image image) {
-    // Step 1: Img 테이블에 데이터 삽입
+    //1. Img 테이블에 데이터 삽입
     imageRepository.addImage(image);
-
-    // Step 2: 생성된 Img의 imgNo를 Post 객체에 설정
+    //2. 생성된 Img의 imgNo를 Post 객체에 설정
     post.setImgNo(image.getImgNo());
-
-    // Step 3: Post 테이블에 데이터 삽입
+    //3. Post 테이블에 데이터 삽입
     postRepository.createPost(post);
   }
 

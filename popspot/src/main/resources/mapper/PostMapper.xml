@@ -8,7 +8,7 @@
   <insert id="createPost" useGeneratedKeys="true" keyProperty="postId" keyColumn="postId">
     INSERT INTO Post (postId, title, address, description, public_url, start_date, end_date, start_time, end_time)
     VALUES (
-    post_seq.NEXTVAL,
+    #{postId},
     #{title, jdbcType=VARCHAR},
     #{address, jdbcType=VARCHAR},
     #{description, jdbcType=VARCHAR},
