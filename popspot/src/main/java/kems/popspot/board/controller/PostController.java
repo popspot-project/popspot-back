@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class PostController {
 
   private final PostService postService;
-//문다이가뭡니까 몬다이는여 어... 일단 erd 보여드릴까여 기억하시나여 ㄱㄱㄱ
+
   public PostController(PostService postService) {
     this.postService = postService;
   }
